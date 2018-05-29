@@ -33,7 +33,25 @@ def get_articles_for_year
   binding.pry
 end
 
-def filter_results_for_keyword
+def get_keyword
+  puts "Please enter a keyword: "
+  gets.chomp.downcase
 end
 
-get_articles_for_year
+def filter_results_for_keyword(results)
+  keyword = get_keyword
+  filtered_results = results.select do |article|
+    article["headline"]["main"].downcase.include?(keyword)
+  end
+end
+
+def get_result_headlines(filtered_results)
+  result_headlines = filtered_results.map do |article|
+    article["headline"]["main"]
+  end
+end
+
+results = get_articles_for_month(2)
+filtered_results = filter_results_for_keyword(results)
+filtered_headlines = get_result_headlines(filtered_results)
+binding.pry
