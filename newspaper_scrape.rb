@@ -47,7 +47,7 @@ end
 
 def get_result_headlines(filtered_results)
   result_headlines = filtered_results.map do |article|
-    article["headline"]["main"]
+    article["headline"]["main"] + " PUBLISHED: " + article["pub_date"]
   end
 end
 
